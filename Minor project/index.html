@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- 
+    ============================================================================
+    SPOTIFY CLONE - HTML FRONTEND ENTRY POINT
+    ============================================================================
+    File: index.html
+    Description: Main single page application HTML layout container.
+    Features: Responsive Sidebar, Dynamic View Port, Top Header, Bottom Player.
+    ============================================================================
+  -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CampusBeat - Web Player: Music for everyone</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="https://open.spotifycdn.com/cdn/images/favicon32.b64411d3.png">
+  <link rel="icon" href="images/logo.png">
+
+  <!-- Google Fonts: Montserrat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <!-- FontAwesome Icon Library -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Application Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+  <!-- App Main Grid Container -->
+  <div class="app-container">
+
+    <!-- ======================================================================
+         SECTION 1: LEFT SIDEBAR NAVIGATION PANEL
+         ====================================================================== -->
+    <aside class="sidebar" aria-label="Sidebar Navigation">
+
+      <!-- Top Nav Box (Logo, Home, Search) -->
+      <div class="sidebar-box">
+        <!-- Spotify Brand Logo -->
+        <div class="brand-logo" id="nav-brand">
+          <img src="images/logo.png" alt="Logo" class="logo-img">
+          <span>CampusBeat</span>
+        </div>
+
+        <!-- Primary Navigation List -->
+        <ul class="nav-list">
+          <li class="nav-item active" id="nav-home" role="button" tabindex="0">
+            <i class="fa-solid fa-house"></i>
+            <span>Home</span>
+          </li>
+          <li class="nav-item" id="nav-search" role="button" tabindex="0">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <span>Search</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Bottom Library Box (Your Library, Playlists List) -->
+      <div class="library-box">
+        <div class="library-header">
+          <div class="library-title" id="nav-library" role="button" tabindex="0">
+            <i class="fa-solid fa-lines-leaning"></i>
+            <span>Your Library</span>
+          </div>
+          <button class="icon-btn" id="btn-create-playlist" title="Create Playlist or View Liked Songs">
+            <i class="fa-solid fa-plus"></i>
+          </button>
+        </div>
+
+        <!-- Dynamic User Library / Playlists List -->
+        <div class="library-content" id="sidebar-library-list">
+          <!-- Populated dynamically by js/app.js -->
+        </div>
+      </div>
+
+    </aside>
+
+    <!-- ======================================================================
+         SECTION 2: MAIN VIEW CONTENT PORT
+         ====================================================================== -->
+    <main class="main-view" id="main-view-container">
+
+      <!-- Top Header Sticky Navigation -->
+      <header class="top-header">
+        <div class="header-nav-btns">
+          <button class="icon-btn" id="btn-nav-back" title="Go Back">
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+          <button class="icon-btn" id="btn-nav-forward" title="Go Forward">
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+        </div>
+
+        <!-- Real-Time Search Bar Input (Shown dynamically on Search view) -->
+        <div class="search-bar-container" id="header-search-container">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" id="search-input" class="search-input" placeholder="What do you want to listen to?"
+            autocomplete="off">
+        </div>
+
+        <!-- Right Header Actions (Theme Selector & Profile) -->
+        <div class="header-actions">
+          <!-- Interactive Theme Selector Dropdown -->
+          <div class="theme-selector-container">
+            <button class="theme-btn" id="btn-theme-toggle" title="Switch App Theme">
+              <i class="fa-solid fa-palette"></i>
+              <span id="current-theme-label">Theme</span>
+            </button>
+            <div class="theme-dropdown" id="theme-dropdown">
+              <div class="theme-dropdown-header">Choose Theme</div>
+
+              <div class="theme-option" data-theme="cyberpunk">
+                <span class="theme-dot" style="background: linear-gradient(135deg, #00ff88, #a855f7);"></span>
+                <div class="theme-info">
+                  <strong>Cyberpunk Neon</strong>
+                  <small>Neon Green & Purple (Logo Match)</small>
+                </div>
+              </div>
+
+              <div class="theme-option" data-theme="amethyst">
+                <span class="theme-dot" style="background: linear-gradient(135deg, #a855f7, #181321);"></span>
+                <div class="theme-info">
+                  <strong>Royal Amethyst</strong>
+                  <small>Electric Violet & Velvet</small>
+                </div>
+              </div>
+
+              <div class="theme-option" data-theme="synthwave">
+                <span class="theme-dot" style="background: linear-gradient(135deg, #ff007f, #7928ca);"></span>
+                <div class="theme-info">
+                  <strong>Synthwave Sunset</strong>
+                  <small>Retro 80s Pink & Indigo</small>
+                </div>
+              </div>
+
+              <div class="theme-option" data-theme="nordic">
+                <span class="theme-dot" style="background: linear-gradient(135deg, #06b6d4, #0b111e);"></span>
+                <div class="theme-info">
+                  <strong>Midnight Frost</strong>
+                  <small>Ice Cyan & Deep Slate</small>
+                </div>
+              </div>
+
+              <div class="theme-option" data-theme="crimson">
+                <span class="theme-dot" style="background: linear-gradient(135deg, #ff2a5f, #1a0e13);"></span>
+                <div class="theme-info">
+                  <strong>Crimson Abyss</strong>
+                  <small>Neon Ruby & Obsidian</small>
+                </div>
+              </div>
+
+              <div class="theme-option" data-theme="spotify">
+                <span class="theme-dot" style="background: #1db954;"></span>
+                <div class="theme-info">
+                  <strong>Classic Dark</strong>
+                  <small>Signature Dark & Green</small>
+                </div>
+              </div>
+
+              <!-- Section: Daylight / Light Themes -->
+              <div class="theme-dropdown-header" style="margin-top: 6px;">Light Themes</div>
+
+              <div class="theme-option" data-theme="pearl-mint">
+                <span class="theme-dot" style="background: linear-gradient(135deg, #10b981, #ffffff);"></span>
+                <div class="theme-info">
+                  <strong>Pearl Mint</strong>
+                  <small>Neo-Spotify Clean White</small>
+                </div>
+              </div>
+
+              <div class="theme-option" data-theme="sakura">
+                <span class="theme-dot" style="background: linear-gradient(135deg, #f43f5e, #fff9fa);"></span>
+                <div class="theme-info">
+                  <strong>Sakura Blush</strong>
+                  <small>Warm Lo-Fi Pastel</small>
+                </div>
+              </div>
+
+              <div class="theme-option" data-theme="glacier">
+                <span class="theme-dot" style="background: linear-gradient(135deg, #0284c7, #ffffff);"></span>
+                <div class="theme-info">
+                  <strong>Glacier Blue</strong>
+                  <small>Polar Frost & Arctic White</small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- User Profile Pill Placeholder -->
+          <div class="user-profile-btn" id="btn-user-profile">
+            <i class="fa-solid fa-circle-user"></i>
+            <span>User Profile</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Dynamic View Body Content Container -->
+      <div class="content-body" id="content-body">
+        <!-- Rendered dynamically via js/app.js router -->
+      </div>
+
+    </main>
+
+    <!-- ======================================================================
+         SECTION 3: FIXED BOTTOM AUDIO PLAYER BAR
+         ====================================================================== -->
+    <footer class="player-bar" aria-label="Audio Player Controls">
+
+      <!-- Left Component: Currently Playing Track Info -->
+      <div class="player-left">
+        <img src="https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?w=500&auto=format&fit=crop&q=80"
+          alt="Track Cover" class="player-cover-img" id="player-cover">
+        <div class="player-track-info">
+          <span class="player-track-title" id="player-title">Select a Song</span>
+          <span class="player-track-artist" id="player-artist">Spotify Clone</span>
+        </div>
+        <button class="like-track-btn" id="player-like-btn" title="Save to Liked Songs">
+          <i class="fa-regular fa-heart"></i>
+        </button>
+      </div>
+
+      <!-- Center Component: Playback Control Buttons & Progress Seek Bar -->
+      <div class="player-center">
+        <!-- Control Buttons -->
+        <div class="player-controls-btns">
+          <button class="control-btn" id="player-shuffle-btn" title="Enable Shuffle">
+            <i class="fa-solid fa-shuffle"></i>
+          </button>
+          <button class="control-btn" id="player-prev-btn" title="Previous Track">
+            <i class="fa-solid fa-backward-step"></i>
+          </button>
+          <button class="control-btn play-pause-btn" id="player-play-btn" title="Play / Pause">
+            <i class="fa-solid fa-circle-play"></i>
+          </button>
+          <button class="control-btn" id="player-next-btn" title="Next Track">
+            <i class="fa-solid fa-forward-step"></i>
+          </button>
+          <button class="control-btn" id="player-repeat-btn" title="Enable Repeat">
+            <i class="fa-solid fa-repeat"></i>
+          </button>
+        </div>
+
+        <!-- Progress Seek Slider -->
+        <div class="playback-progress-container">
+          <span class="time-stamp" id="current-time">0:00</span>
+          <div class="progress-bar-track" id="progress-bar">
+            <div class="progress-bar-fill" id="progress-fill"></div>
+          </div>
+          <span class="time-stamp" id="duration-time">0:00</span>
+        </div>
+      </div>
+
+      <!-- Right Component: Volume Control Bar -->
+      <div class="player-right">
+        <button class="control-btn" id="volume-btn" title="Mute / Unmute Volume">
+          <i class="fa-solid fa-volume-high"></i>
+        </button>
+        <div class="volume-bar-track" id="volume-bar">
+          <div class="volume-bar-fill" id="volume-fill"></div>
+        </div>
+      </div>
+
+    </footer>
+
+  </div>
+
+  <!-- Client JavaScript Application Scripts -->
+  <!-- API Data Service -->
+  <script src="js/api.js"></script>
+  <!-- HTML5 Audio Engine -->
+  <script src="js/player.js"></script>
+  <!-- Main View Routing & UI Application Controller -->
+  <script src="js/app.js"></script>
+
+</body>
+
+</html>
